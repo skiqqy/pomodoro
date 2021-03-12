@@ -3,9 +3,9 @@
 # Author: Skiqqy
 
 sound="/usr/share/sounds/freedesktop/stereo/bell.oga"
-ptimer=1 #$((60*25))
-sbreak=1 #$((60*3))
-lbreak=1 #$((60*30))
+ptimer=$((60*25))
+sbreak=$((60*3))
+lbreak=$((60*30))
 pcycle=4
 tasks=0
 
