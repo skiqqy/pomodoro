@@ -1,0 +1,42 @@
+#!/bin/bash
+# This tool helps with the pomodoro technique
+# Author: Skiqqy
+
+sound="/usr/share/sounds/freedesktop/stereo/bell.oga"
+ptimer=1 #$((60*25))
+sbreak=1 #$((60*3))
+lbreak=1 #$((60*30))
+pcycle=4
+tasks=0
+
+# Usage: notify "msg"
+# Usus herbe to show "msg" and paplay to make a sound.
+notify ()
+{
+	paplay "$sound"
+	herbe "$1"
+}
+
+main ()
+{
+	for ((;;))
+	do
+		notify "Starting Pomo!"
+		sleep "$ptimer"
+		((tasks++))
+
+		if (( "$tasks" < "$pcycle" ))
+		then
+			# Take a short break.
+			notify "Pomo done! Enjoy your $(("$sbreak"/60)) minute break :-)"
+			sleep "$sbreak"
+		else
+			# Take a long break.
+			notify "$pcycle Pomo(s) done! Enjoy your $(("$lbreak"/60)) minute break :-)"
+			tasks=0
+			sleep "$lbreak"
+		fi
+	done
+}
+
+main "$@"
